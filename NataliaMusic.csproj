@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\App.js" />
+    <None Remove="ClientApp\src\components\FetchData.tsx" />
   </ItemGroup>
 
   <ItemGroup>
