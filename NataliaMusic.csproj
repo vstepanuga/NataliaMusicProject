@@ -29,11 +29,12 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\App.js" />
-    <None Remove="ClientApp\src\components\FetchData.tsx" />
+    <None Remove="ClientApp\src\components\FetchData.js" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\App.js" />
+    <TypeScriptCompile Include="ClientApp\src\components\FetchData.js" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

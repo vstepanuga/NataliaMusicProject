@@ -7,13 +7,7 @@ using System.Threading.Tasks;
 namespace NataliaMusic.Controllers
 {
     public class DatabaseTest
-    {
-        public static void Main()
-        {
-            connectionTest();
-        }
-
-
+    { 
         public static void connectionTest()
         {
             var dbCon = DatabaseConnect.Instance();
