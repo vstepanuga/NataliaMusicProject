@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dapper;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,50 +11,22 @@ namespace NataliaMusic.Controllers
 {
     public class DatabaseConnect
     {
-        private DatabaseConnect()
+        public class Student
         {
+            public int? student_id { get; set; }
+            public string name { get; set; }
+            public string student_link { get; set; }
         }
 
-        private string databaseName = string.Empty;
-        public string DatabaseName
+        public static IEnumerable<Student> GetDatabaseStudents()
         {
-            get { return databaseName; }
-            set { databaseName = value; }
+            var ConnectionString = "Database=NataliaMusic;Data Source=localhost;User ID=vstepa;Password=iHeIVXtViN8QpcXj6wzz";
+            MySqlConnection MySql_conn = new MySqlConnection(ConnectionString);
+
+            string query = "select * from student;";
+            var studentList = MySql_conn.Query<Student>(query);
+
+            return studentList;
         }
-
-        public string Password { get; set; }
-        private MySqlConnection connection = null;
-        public MySqlConnection Connection
-        {
-            get { return connection; }
-        }
-
-        private static DatabaseConnect _instance = null;
-        public static DatabaseConnect Instance()
-        {
-            if (_instance == null)
-                _instance = new DatabaseConnect();
-            return _instance;
-        }
-
-        public bool IsConnect()
-        {
-            if (Connection == null)
-            {
-                if (String.IsNullOrEmpty(databaseName))
-                    return false;
-                string connstring = string.Format("Server=localhost; database={0}; UID=vstepa; password=iHeIVXtViN8QpcXj6wzz", databaseName);
-                connection = new MySqlConnection(connstring);
-                connection.Open();
-            }
-
-            return true;
-        }
-
-        public void Close()
-        {
-            connection.Close();
-        }
-
     }
 }
